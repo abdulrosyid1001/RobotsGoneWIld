@@ -965,7 +965,7 @@
 							"type": "script",
 							"language": "javascript",
 							"script": [
-								"runtime.globalVars.startHealth = playerProperties.baseAbilities.health + (playerProperties.additionAbilities.health*playerProperties.permanentUpgrades.health);"
+								"runtime.globalVars.startHealth = playerProperties.baseAbilities.health + (playerProperties.addPermanentAbilities.health*playerProperties.permanentUpgrades.health);"
 							]
 						},
 						{
@@ -1064,8 +1064,7 @@
 								"playerProperties.temporaryUpgrades.health = 0;",
 								"playerProperties.temporaryUpgrades.speed = 0;",
 								"playerProperties.temporaryUpgrades.defense = 0;",
-								"playerProperties.temporaryUpgrades.magnet = 0;",
-								"console.log(playerProperties);"
+								"playerProperties.temporaryUpgrades.magnet = 0;"
 							]
 						}
 					],
@@ -1902,6 +1901,330 @@
 			]
 		},
 		{
+			"eventType": "variable",
+			"name": "touchedPressed",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 312053537404779
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player Control",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Joystick",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-touch",
+									"objectClass": "Touch",
+									"sid": 225755695218190
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "joystick_thumb",
+									"sid": 764955067780057,
+									"parameters": {
+										"x": "Touch.X(joystick_bg.LayerName)",
+										"y": "Touch.Y(joystick_bg.LayerName)"
+									}
+								}
+							],
+							"sid": 150218955171627,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-angle-toward-position",
+											"objectClass": "joystick_line",
+											"sid": 521636570746323,
+											"parameters": {
+												"x": "joystick_thumb.X",
+												"y": "joystick_thumb.Y"
+											}
+										}
+									],
+									"sid": 585088151758673
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 648331529391142,
+											"parameters": {
+												"first-value": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)",
+												"comparison": 3,
+												"second-value": "joystickRadius"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-width",
+											"objectClass": "joystick_line",
+											"sid": 635020368046151,
+											"parameters": {
+												"width": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)"
+											}
+										}
+									],
+									"sid": 273986580950106
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 269269724477412
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "joystick_thumb",
+											"sid": 248226101870940,
+											"parameters": {
+												"x": "joystick_line.ImagePointX(1)",
+												"y": "joystick_line.ImagePointY(1)"
+											}
+										}
+									],
+									"sid": 622436687956237
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-touch-end",
+									"objectClass": "Touch",
+									"sid": 401230376893555
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "joystick_thumb",
+									"sid": 461281619089971,
+									"parameters": {
+										"object": "joystick_bg",
+										"image-point-optional": "0"
+									}
+								}
+							],
+							"sid": 583232630905452
+						}
+					],
+					"sid": 260356240808728
+				},
+				{
+					"functionName": "playerMovement",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "playerAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 322249605213494
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "player",
+							"sid": 248757533256611,
+							"parameters": {
+								"angle": "playerAngle",
+								"distance": "playerSpeedTotal*dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "player",
+							"sid": 326915201129160,
+							"parameters": {
+								"instance-variable": "lastAngle",
+								"value": "playerAngle"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"console.log(runtime.globalVars.playerSpeedTotal);"
+							]
+						}
+					],
+					"sid": 202200603278521,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "player",
+									"sid": 336885449548855,
+									"parameters": {
+										"animation": "\"idle\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "player",
+									"sid": 784331924029820,
+									"parameters": {
+										"animation": "\"walk\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"callFunction": "playAudio",
+									"sid": 170475351346348,
+									"parameters": [
+										"\"footsteps\"",
+										"150",
+										"\"footsteps\""
+									]
+								}
+							],
+							"sid": 283503050716590
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 821854722646861
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 755121076821261,
+							"parameters": {
+								"variable": "gameOver",
+								"comparison": 1,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 618704515387846,
+							"parameters": {
+								"first-value": "timescale",
+								"comparison": 1,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 981045990359261,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Player movement"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 762200277376902,
+									"parameters": {
+										"first-value": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)",
+										"comparison": 1,
+										"second-value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "playerMovement",
+									"sid": 369939983748067,
+									"parameters": [
+										"joystick_line.Angle"
+									]
+								}
+							],
+							"sid": 184320512112850
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 781469761691685
+								},
+								{
+									"id": "is-animation-playing",
+									"objectClass": "player",
+									"sid": 737055214434331,
+									"parameters": {
+										"animation": "\"walk\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "player",
+									"sid": 209614531030248,
+									"parameters": {
+										"animation": "\"idle\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "stop",
+									"objectClass": "Audio",
+									"sid": 419246544642765,
+									"parameters": {
+										"tag": "\"footsteps\""
+									}
+								}
+							],
+							"sid": 422517936564047
+						}
+					]
+				}
+			],
+			"sid": 506088188253765
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -1946,219 +2269,6 @@
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Player movement"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 704375266930007,
-									"parameters": {
-										"first-value": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)",
-										"comparison": 1,
-										"second-value": "0"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "move-at-angle",
-									"objectClass": "player",
-									"sid": 961602741046732,
-									"parameters": {
-										"angle": "joystick_line.Angle",
-										"distance": "dictionary_playerStats.Get(\"moveSpeed\")*dt"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "player",
-									"sid": 676204337484827,
-									"parameters": {
-										"instance-variable": "lastAngle",
-										"value": "joystick_line.Angle"
-									}
-								}
-							],
-							"sid": 883338264524316,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-animation-playing",
-											"objectClass": "player",
-											"sid": 314980171938646,
-											"parameters": {
-												"animation": "\"idle\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "player",
-											"sid": 124122513888106,
-											"parameters": {
-												"animation": "\"walk\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 229429305337425,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 272449078665812,
-													"parameters": {
-														"variable": "soundOff"
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "play",
-													"objectClass": "Audio",
-													"sid": 703532036087453,
-													"parameters": {
-														"audio-file": "footsteps",
-														"loop": "looping",
-														"volume": "150",
-														"stereo-pan": "0",
-														"tag-optional": "\"footsteps\""
-													}
-												}
-											],
-											"sid": 119349161247266
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 913317474454031,
-											"parameters": {
-												"first-value": "joystick_line.Angle",
-												"comparison": 4,
-												"second-value": "90"
-											}
-										},
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 367461992826454,
-											"parameters": {
-												"first-value": "joystick_line.Angle",
-												"comparison": 2,
-												"second-value": "280"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 106858045263605,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-mirrored",
-													"objectClass": "player",
-													"sid": 711479753304809,
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "set-mirrored",
-													"objectClass": "player",
-													"sid": 327774064050750,
-													"parameters": {
-														"state": "mirrored"
-													}
-												}
-											],
-											"sid": 283932042670131
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 799187867750043
-										},
-										{
-											"id": "is-mirrored",
-											"objectClass": "player",
-											"sid": 726785617504448
-										}
-									],
-									"actions": [
-										{
-											"id": "set-mirrored",
-											"objectClass": "player",
-											"sid": 643129440903884,
-											"parameters": {
-												"state": "not-mirrored"
-											}
-										}
-									],
-									"sid": 437854373527285
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 251631814277744
-								},
-								{
-									"id": "is-animation-playing",
-									"objectClass": "player",
-									"sid": 651613942516659,
-									"parameters": {
-										"animation": "\"walk\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation",
-									"objectClass": "player",
-									"sid": 966463871392139,
-									"parameters": {
-										"animation": "\"idle\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "stop",
-									"objectClass": "Audio",
-									"sid": 492555427500661,
-									"parameters": {
-										"tag": "\"footsteps\""
-									}
-								}
-							],
-							"sid": 597759652660836
-						},
-						{
-							"eventType": "comment",
 							"text": "Player attack"
 						},
 						{
@@ -2182,6 +2292,16 @@
 							"sid": 672738119234660
 						},
 						{
+							"eventType": "variable",
+							"name": "bulletDamage",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 786716433613809
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -2190,7 +2310,7 @@
 									"language": "javascript",
 									"script": [
 										"localVars.bulletLevel = playerProperties.temporaryUpgrades.bullet+1;",
-										"console.log(\"bullet\", localVars.bulletLevel);"
+										"localVars.bulletDamage = playerProperties.addTemporaryAbilities.bullet;"
 									]
 								},
 								{
@@ -2251,6 +2371,15 @@
 										"y": "player.ImagePointY(1)",
 										"create-hierarchy": false,
 										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "bullet_arrow",
+									"sid": 896983377817956,
+									"parameters": {
+										"instance-variable": "damage",
+										"value": "bulletDamage"
 									}
 								},
 								{
@@ -2579,6 +2708,16 @@
 					"sid": 802244198811438
 				},
 				{
+					"eventType": "variable",
+					"name": "magnetAdd",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 137408416827999
+				},
+				{
 					"eventType": "block",
 					"conditions": [],
 					"actions": [
@@ -2586,6 +2725,7 @@
 							"type": "script",
 							"language": "javascript",
 							"script": [
+								"localVars.magnetAdd = playerProperties.addTemporaryAbilities.magnet;",
 								"localVars.magnetLevel = playerProperties.temporaryUpgrades.magnet;"
 							]
 						}
@@ -2623,11 +2763,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 596852453977503,
+									"sid": 783299580429351,
 									"parameters": {
 										"first-value": "distance(gem.X,gem.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100"
+										"second-value": "magnetAdd"
 									}
 								}
 							],
@@ -2674,11 +2814,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 702335826957878,
+									"sid": 167220253954593,
 									"parameters": {
 										"first-value": "distance(gem.X,gem.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+(magnetLevel*100)"
+										"second-value": "magnetAdd+(magnetLevel*magnetAdd)"
 									}
 								}
 							],
@@ -2725,11 +2865,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 563923793376665,
+									"sid": 377897513689381,
 									"parameters": {
 										"first-value": "distance(gem.X,gem.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+500"
+										"second-value": "magnetAdd+500"
 									}
 								}
 							],
@@ -2788,11 +2928,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 479530585403080,
+									"sid": 373231461348205,
 									"parameters": {
 										"first-value": "distance(hp.X,hp.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100"
+										"second-value": "magnetAdd"
 									}
 								}
 							],
@@ -2839,11 +2979,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 175513049292885,
+									"sid": 147124193155198,
 									"parameters": {
 										"first-value": "distance(hp.X,hp.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+(magnetLevel*100)"
+										"second-value": "magnetAdd+(magnetLevel*magnetAdd)"
 									}
 								}
 							],
@@ -2890,11 +3030,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 501303670733205,
+									"sid": 856739932423355,
 									"parameters": {
 										"first-value": "distance(hp.X,hp.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+500"
+										"second-value": "magnetAdd+500"
 									}
 								}
 							],
@@ -2953,11 +3093,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 377151562402780,
+									"sid": 944772580987095,
 									"parameters": {
 										"first-value": "distance(coin.X,coin.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100"
+										"second-value": "magnetAdd"
 									}
 								}
 							],
@@ -3004,11 +3144,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 613842823345310,
+									"sid": 624913125698414,
 									"parameters": {
 										"first-value": "distance(coin.X,coin.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+(magnetLevel*100)"
+										"second-value": "magnetAdd+(magnetLevel*magnetAdd)"
 									}
 								}
 							],
@@ -3055,11 +3195,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 295502435755923,
+									"sid": 695923468083962,
 									"parameters": {
 										"first-value": "distance(coin.X,coin.Y,player.X,player.Y)",
 										"comparison": 2,
-										"second-value": "100+500"
+										"second-value": "magnetAdd+500"
 									}
 								}
 							],
@@ -3088,103 +3228,6 @@
 					]
 				}
 			]
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Joystick",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-angle-toward-position",
-							"objectClass": "joystick_line",
-							"sid": 654474901858286,
-							"parameters": {
-								"x": "joystick_thumb.X",
-								"y": "joystick_thumb.Y"
-							}
-						}
-					],
-					"sid": 654461537583250
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 689862784592070,
-							"parameters": {
-								"first-value": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)",
-								"comparison": 3,
-								"second-value": "joystickRadius"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-width",
-							"objectClass": "joystick_line",
-							"sid": 107695599487527,
-							"parameters": {
-								"width": "distance(joystick_bg.X, joystick_bg.Y, joystick_thumb.X, joystick_thumb.Y)"
-							}
-						}
-					],
-					"sid": 374163024388275
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 832791943593199
-						}
-					],
-					"actions": [
-						{
-							"id": "set-position",
-							"objectClass": "joystick_thumb",
-							"sid": 415658428869636,
-							"parameters": {
-								"x": "joystick_line.ImagePointX(1)",
-								"y": "joystick_line.ImagePointY(1)"
-							}
-						}
-					],
-					"sid": 564847411335159
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-drop",
-							"objectClass": "joystick_thumb",
-							"sid": 454530145913732,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-position-to-another-object",
-							"objectClass": "joystick_thumb",
-							"sid": 642690500694221,
-							"parameters": {
-								"object": "joystick_bg",
-								"image-point-optional": "0"
-							}
-						}
-					],
-					"sid": 177545379121729
-				}
-			],
-			"sid": 291019647130916
 		},
 		{
 			"eventType": "block",
@@ -5769,6 +5812,16 @@
 				},
 				{
 					"eventType": "variable",
+					"name": "daggerDamage",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 108594938995796
+				},
+				{
+					"eventType": "variable",
 					"name": "missileLevel",
 					"type": "number",
 					"initialValue": "0",
@@ -5776,6 +5829,16 @@
 					"isStatic": false,
 					"isConstant": false,
 					"sid": 736956840672786
+				},
+				{
+					"eventType": "variable",
+					"name": "missileDamage",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 878231825911407
 				},
 				{
 					"eventType": "variable",
@@ -5797,7 +5860,9 @@
 							"script": [
 								"localVars.daggerLevel = playerProperties.temporaryUpgrades.dagger;",
 								"localVars.missileLevel = playerProperties.temporaryUpgrades.missile;",
-								"localVars.damageLevel = playerProperties.permanentUpgrades.damage + playerProperties.temporaryUpgrades.damage+1;"
+								"localVars.damageLevel = playerProperties.permanentUpgrades.damage + playerProperties.temporaryUpgrades.damage+1;",
+								"localVars.daggerDamage = playerProperties.addTemporaryAbilities.dagger;",
+								"localVars.missileDamage = playerProperties.addTemporaryAbilities.missile;"
 							]
 						}
 					],
@@ -5882,10 +5947,10 @@
 										{
 											"id": "set-instvar-value",
 											"objectClass": "dagger",
-											"sid": 871431442174867,
+											"sid": 171660016303137,
 											"parameters": {
 												"instance-variable": "damage",
-												"value": "10+(daggerLevel*10)"
+												"value": "daggerDamage+(daggerLevel*daggerDamage)"
 											}
 										}
 									],
@@ -5921,13 +5986,6 @@
 							],
 							"actions": [
 								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"call meteor\", localVars.missileLevel);"
-									]
-								},
-								{
 									"id": "create-object",
 									"objectClass": "System",
 									"sid": 611936636017202,
@@ -5956,6 +6014,15 @@
 									"parameters": {
 										"instance-variable": "targetY",
 										"value": "round(random(-300,500))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "meteor",
+									"sid": 486631663627879,
+									"parameters": {
+										"instance-variable": "damage",
+										"value": "missileDamage"
 									}
 								},
 								{
@@ -6239,6 +6306,13 @@
 										"instance-variable": "push",
 										"value": "1"
 									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"localVars.bulletDamage = playerProperties.addTemporaryAbilities.bullet;"
+									]
 								}
 							],
 							"sid": 443237981803269
@@ -6845,16 +6919,33 @@
 							"sid": 802255389809870
 						},
 						{
+							"eventType": "variable",
+							"name": "spiningBallDamage",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 816259379243822
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"localVars.spiningBallDamage = playerProperties.addTemporaryAbilities.spinningBall;"
+									]
+								},
+								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 579318107798097,
+									"sid": 154128340634446,
 									"parameters": {
 										"variable": "randomDamage",
-										"value": "round(random(spinningBall.damage-4,spinningBall.damage+4)*damageLevel)"
+										"value": "round(random(spiningBallDamage-4,spiningBallDamage+4)*damageLevel)"
 									}
 								},
 								{
@@ -9961,6 +10052,16 @@
 					]
 				},
 				{
+					"eventType": "variable",
+					"name": "auraAdd",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 428815689940528
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -10000,6 +10101,13 @@
 								"variable": "is_boost_upgrade",
 								"value": "false"
 							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"localVars.shieldAdd = playerProperties.addTemporaryAbilities.aura;"
+							]
 						}
 					],
 					"sid": 683664554148048,
@@ -10249,10 +10357,10 @@
 								{
 									"id": "add-to-eventvar",
 									"objectClass": "System",
-									"sid": 895079143716887,
+									"sid": 858762081361610,
 									"parameters": {
 										"variable": "auraScale",
-										"value": "0.4"
+										"value": "auraAdd"
 									}
 								}
 							],
@@ -14664,14 +14772,15 @@
 					"language": "javascript",
 					"script": [
 						"var baseAb = playerProperties.baseAbilities;",
-						"var PermAb = playerProperties.permanentUpgrades;",
-						"var additAb = playerProperties.additionAbilities;",
-						"var tempAb = playerProperties.temporaryUpgrades;",
+						"var lvlPermAb = playerProperties.permanentUpgrades;",
+						"var lvltempAb = playerProperties.temporaryUpgrades;",
+						"var addPermAb = playerProperties.addPermanentAbilities;",
+						"var addTempAb = playerProperties.addTemporaryAbilities;",
 						"",
-						"runtime.globalVars.playerDamageTotal =  baseAb.damage + (additAb.damage * (PermAb.damage + tempAb.damage));",
-						"runtime.globalVars.playerHealthTotal =  baseAb.health + (additAb.health * (PermAb.health + tempAb.health));",
-						"runtime.globalVars.playerSpeedTotal =  baseAb.speed + (additAb.speed * (PermAb.speed + tempAb.speed));",
-						"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (additAb.defense * (PermAb.defense + tempAb.defense));"
+						"runtime.globalVars.playerDamageTotal =  baseAb.damage + (addPermAb.damage*lvlPermAb.damage) + (addTempAb.damage * lvltempAb.damage);",
+						"runtime.globalVars.playerHealthTotal =  baseAb.health + (addPermAb.health*lvlPermAb.health) + (addTempAb.health * lvltempAb.health);",
+						"runtime.globalVars.playerSpeedTotal =  baseAb.speed + (addPermAb.speed*lvlPermAb.speed) + (addTempAb.speed * lvltempAb.speed);",
+						"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (addPermAb.defense*lvlPermAb.defense) + (addTempAb.defense * lvltempAb.defense);"
 					]
 				}
 			],
@@ -14699,14 +14808,15 @@
 							"language": "javascript",
 							"script": [
 								"var baseAb = playerProperties.baseAbilities;",
-								"var PermAb = playerProperties.permanentUpgrades;",
-								"var additAb = playerProperties.additionAbilities;",
-								"var tempAb = playerProperties.temporaryUpgrades;",
+								"var lvlPermAb = playerProperties.permanentUpgrades;",
+								"var lvltempAb = playerProperties.temporaryUpgrades;",
+								"var addPermAb = playerProperties.addPermanentAbilities;",
+								"var addTempAb = playerProperties.addTemporaryAbilities;",
 								"",
-								"runtime.globalVars.playerDamageTotal =  baseAb.damage + (additAb.damage * (PermAb.damage + tempAb.damage));",
-								"runtime.globalVars.playerHealthTotal =  baseAb.health + (additAb.health * (PermAb.health + tempAb.health));",
-								"runtime.globalVars.playerSpeedTotal =  baseAb.speed + (additAb.speed * (PermAb.speed + tempAb.speed));",
-								"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (additAb.defense * (PermAb.defense + tempAb.defense));"
+								"runtime.globalVars.playerDamageTotal =  baseAb.damage + (addPermAb.damage*lvlPermAb.damage) + (addTempAb.damage * lvltempAb.damage);",
+								"runtime.globalVars.playerHealthTotal =  baseAb.health + (addPermAb.health*lvlPermAb.health) + (addTempAb.health * lvltempAb.health);",
+								"runtime.globalVars.playerSpeedTotal =  baseAb.speed + (addPermAb.speed*lvlPermAb.speed) + (addTempAb.speed * lvltempAb.speed);",
+								"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (addPermAb.defense*lvlPermAb.defense) + (addTempAb.defense * lvltempAb.defense);"
 							]
 						}
 					],

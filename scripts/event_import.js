@@ -57,12 +57,25 @@ var playerProperties = {
 		speed: 160,
 		defense: 10
 	},
-	additionAbilities:
+	addPermanentAbilities:
 	{
 		damage: 10,
 		health: 20,
 		speed: 20,
 		defense: 5
+	},
+	addTemporaryAbilities:
+	{
+		bullet: 10,
+		spinningBall: 10,
+		missile: 30,
+		dagger: 10,
+		aura: 0.4,
+		damage: 10,
+		health: 20,
+		speed: 20,
+		defense: 5,
+		magnet: 100
 	},
 	permanentUpgrades: {
 		damage: 0,
