@@ -17,6 +17,9 @@ import{
 	lang_state
 } from './language.js'
 
+import{
+} from './gameConfig.js'
+
 let SDK_TRANSSION = 0;
 let SDK_XIAOMI = 1;
 let SDK_GAMELOFT = 2;
@@ -25,6 +28,7 @@ let SDK_ARENAMAIN = 4;
 // var sdk_state = SDK_XIAOMI;
 var sdk_state = SDK_ARENAMAIN;
 
+var storageType = "localStorage";
 
 var is_ad_free = false;
 
@@ -32,13 +36,53 @@ if(sdk_state == SDK_GAMELOFT || sdk_state == SDK_ARENAMAIN){
 	is_ad_free = true;
 }
 
-var gami_arrow_speed = 0.017; // to avoid rebuild over and over again... duh...
+var gami_arrow_speed = 0.017; // arrow to multiplier collected in gameover
 
 // hero data
-var health_addition = 40;
-var speed_addition = 20;
-var armor_addition = 5;
 var start_coin_value = 0;
+//permanetupgrades and temporaryupgrades are level upgrade with 5 for max level
+var playerProperties = {
+	info: {
+		name: "Hero",
+		level: 1,
+		experience: 0,
+		maxExperience: 100,
+		shotCooldown: 2,
+		currentXP: 10,
+		additionXP: 10
+	},
+	baseAbilities: {
+		damage: 10,
+		health: 80,
+		speed: 160,
+		defense: 10
+	},
+	additionAbilities:
+	{
+		damage: 10,
+		health: 20,
+		speed: 20,
+		defense: 5
+	},
+	permanentUpgrades: {
+		damage: 0,
+		health: 0,
+		speed: 0,
+		defense: 0
+	},
+	temporaryUpgrades: {
+		bullet: 0,
+		spinningBall: 0,
+		missile: 0,
+		dagger: 0,
+		aura: 0,
+		damage: 0,
+		health: 0,
+		speed: 0,
+		defense: 0,
+		magnet: 0
+	},
+}
 
 // enemies data
 

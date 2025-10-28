@@ -91,153 +91,7 @@
 					]
 				}
 			],
-			"sid": 445717681856876,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 748985407455838,
-							"parameters": {
-								"variable": "MusicOff"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [],
-					"sid": 546706007148963,
-					"disabled": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-tag-playing",
-									"objectClass": "Audio",
-									"sid": 570559499303153,
-									"parameters": {
-										"tag": "\"bgm\""
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 269691147459007,
-									"parameters": {
-										"audio-file": "Main_Music",
-										"loop": "looping",
-										"volume": "0",
-										"stereo-pan": "0",
-										"tag-optional": "\"bgm\""
-									}
-								}
-							],
-							"sid": 796471612410179,
-							"disabled": true
-						}
-					]
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-width",
-					"objectClass": "9patch",
-					"sid": 730334640607555,
-					"parameters": {
-						"comparison": 2,
-						"width": "loader_black_bar.Width"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-width",
-					"objectClass": "9patch",
-					"sid": 747463507921979,
-					"disabled": true,
-					"parameters": {
-						"width": "Self.Width + int(random(1, 8))"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "text_UI",
-					"sid": 576128717437425,
-					"disabled": true,
-					"parameters": {
-						"text": "\"LOADING \"& int((9patch.Width*100)/loader_black_bar.Width) &\"%\""
-					}
-				},
-				{
-					"id": "set-width",
-					"objectClass": "9patch",
-					"sid": 841586130837215,
-					"parameters": {
-						"width": "loader_black_bar.Width * loadingprogress"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "text_UI",
-					"sid": 902447120769057,
-					"parameters": {
-						"text": "\"LOADING \"& round(loadingprogress * 100) & \"%\""
-					}
-				}
-			],
-			"sid": 810551199491542,
-			"disabled": true
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-width",
-					"objectClass": "9patch",
-					"sid": 255916713899911,
-					"parameters": {
-						"comparison": 5,
-						"width": "loader_black_bar.Width"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-width",
-					"objectClass": "9patch",
-					"sid": 597847536529458,
-					"parameters": {
-						"width": "loader_black_bar.Width"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "text_UI",
-					"sid": 467995988520155,
-					"disabled": true,
-					"parameters": {
-						"text": "\"LOADING \"& int((9patch.Width*100)/loader_black_bar.Width) &\"%\""
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "text_UI",
-					"sid": 727345523883822,
-					"parameters": {
-						"text": "\"LOADING 100%\""
-					}
-				}
-			],
-			"sid": 574469591120366,
-			"disabled": true
+			"sid": 445717681856876
 		},
 		{
 			"eventType": "block",
@@ -368,7 +222,8 @@
 						"\tbreak;",
 						"",
 						"}",
-						""
+						"await runtime.callFunction(\"getStorage\", \"coins\");",
+						"await runtime.callFunction(\"getStorage\", \"permanentUpgrades\");"
 					]
 				},
 				{

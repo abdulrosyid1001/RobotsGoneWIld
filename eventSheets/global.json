@@ -33,6 +33,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "coins",
+			"type": "number",
+			"initialValue": "10000",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 944281313917091
+		},
+		{
+			"eventType": "variable",
 			"name": "menu_replay_state",
 			"type": "number",
 			"initialValue": "0",
@@ -90,6 +100,181 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 516701084567477
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Music and Audio",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "playAudio",
+					"functionDescription": "by name",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "audioName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 582067165556168
+						},
+						{
+							"name": "volume",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 577578267535207
+						},
+						{
+							"name": "tag",
+							"type": "string",
+							"initialValue": "sfx",
+							"comment": "",
+							"sid": 719565786790620
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 278977550669088,
+							"parameters": {
+								"variable": "soundOff"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 709200220733580,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "audioName",
+								"loop": "not-looping",
+								"volume": "volume",
+								"stereo-pan": "0",
+								"tag-optional": "tag"
+							}
+						}
+					],
+					"sid": 709807692853086
+				},
+				{
+					"functionName": "toogleAudio",
+					"functionDescription": "ON / OFF",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 476352503596804
+				}
+			],
+			"sid": 752800241915557
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Storage",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "saveStorage",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "keyName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 835538165903090
+						},
+						{
+							"name": "dataStr",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 829849093395137
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"if(storageType = \"localStorage\"){",
+								"\tconsole.log(\"saveStorage\", localVars.dataStr);",
+								"\tawait runtime.storage.setItem(localVars.keyName, localVars.dataStr);",
+								"}"
+							]
+						}
+					],
+					"sid": 854530464799219
+				},
+				{
+					"functionName": "getStorage",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "keyName",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 808561488498843
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"const keyName = localVars.keyName;",
+								"if(storageType = \"localStorage\"){",
+								"\tvar getDataStr = await runtime.storage.getItem(keyName);",
+								"\tconsole.log(\"getStorage\", getDataStr);",
+								"\tif(getDataStr !== null && getDataStr !== undefined){",
+								"\t\tswitch (keyName){",
+								"\t\t\tcase \"coins\":",
+								"\t\t\t\truntime.globalVars.coins = Number(getDataStr);",
+								"\t\t\t\tbreak;",
+								"\t\t\tcase \"permanentUpgrades\":",
+								"\t\t\t\tplayerProperties.permanentUpgrades = JSON.parse(getDataStr);",
+								"\t\t\t\tconsole.log(\"playerProperties\", playerProperties);",
+								"\t\t\t\tbreak;",
+								"\t\t}",
+								"\t}",
+								"}"
+							]
+						}
+					],
+					"sid": 948846897980230
+				}
+			],
+			"sid": 258039299562478
 		}
 	],
 	"sid": 940338869681387

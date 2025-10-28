@@ -175,25 +175,6 @@
 				{
 					"id": "add-key",
 					"objectClass": "dictionary_save",
-					"sid": 561286962148490,
-					"disabled": true,
-					"parameters": {
-						"key": "\"coins\"",
-						"value": "9999"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "dictionary_save",
-					"sid": 940923398864880,
-					"parameters": {
-						"key": "\"coins\"",
-						"value": "start_coin_value"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "dictionary_save",
 					"sid": 911049484733111,
 					"parameters": {
 						"key": "\"upgradeHealth\"",
@@ -206,15 +187,6 @@
 					"sid": 390524421730482,
 					"parameters": {
 						"key": "\"upgradeArmor\"",
-						"value": "0"
-					}
-				},
-				{
-					"id": "add-key",
-					"objectClass": "dictionary_save",
-					"sid": 525558395307498,
-					"parameters": {
-						"key": "\"upgradeSpeed\"",
 						"value": "0"
 					}
 				},
@@ -836,9 +808,9 @@
 						{
 							"id": "compare-text",
 							"objectClass": "text_UI",
-							"sid": 343700965580140,
+							"sid": 651607465353011,
 							"parameters": {
-								"text-to-compare": "dictionary_save.Get(\"coins\")",
+								"text-to-compare": "str(coins)",
 								"case-sensitivity": "ignore-case"
 							},
 							"isInverted": true
@@ -848,13 +820,13 @@
 						{
 							"id": "set-text",
 							"objectClass": "text_UI",
-							"sid": 488200822115809,
+							"sid": 884977841391232,
 							"parameters": {
-								"text": "dictionary_save.Get(\"coins\")"
+								"text": "str(coins)"
 							}
 						}
 					],
-					"sid": 817101424140656
+					"sid": 648010600668534
 				}
 			]
 		},
@@ -986,24 +958,6 @@
 								"ping-pong": "no",
 								"repeat-count": "1"
 							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "btInfo",
-							"sid": 407783852069620,
-							"disabled": true,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"out\"",
-								"property": "offsetY",
-								"end-value": "btSetting.Y",
-								"time": "0.2",
-								"ease": "easeinback",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
 						}
 					],
 					"sid": 591070873164756
@@ -1047,24 +1001,6 @@
 								"tags": "\"out\"",
 								"property": "offsetY",
 								"end-value": "32+btSetting.Y *3",
-								"time": "0.5",
-								"ease": "easeoutback",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "btInfo",
-							"sid": 101740116978494,
-							"disabled": true,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"out\"",
-								"property": "offsetY",
-								"end-value": "32+btSetting.Y *4",
 								"time": "0.5",
 								"ease": "easeoutback",
 								"destroy-on-complete": "no",
