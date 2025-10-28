@@ -1,0 +1,21 @@
+{
+	"name": "text_damageFX",
+	"plugin-id": "Text",
+	"sid": 942542304264933,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Bullet",
+			"name": "Bullet",
+			"sid": 231461006598331
+		},
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 591429722630105
+		}
+	],
+	"effectTypes": []
+}

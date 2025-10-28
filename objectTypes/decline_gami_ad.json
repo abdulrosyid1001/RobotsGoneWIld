@@ -1,0 +1,10 @@
+{
+	"name": "decline_gami_ad",
+	"plugin-id": "Text",
+	"sid": 951159623501219,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

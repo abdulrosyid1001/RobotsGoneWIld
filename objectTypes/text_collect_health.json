@@ -1,0 +1,10 @@
+{
+	"name": "text_collect_health",
+	"plugin-id": "Text",
+	"sid": 828253046137528,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

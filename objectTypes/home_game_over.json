@@ -1,0 +1,66 @@
+{
+	"name": "home_game_over",
+	"plugin-id": "Sprite",
+	"sid": 449880691960484,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 889081306540476
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 640,
+						"height": 757,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8814437,
+						"collisionPoly": {
+							"points": [
+								0.053125,
+								0.04491413474240423,
+								0.5,
+								0,
+								0.946875,
+								0.04491413474240423,
+								1,
+								0.5,
+								0.9453125,
+								0.9537648612945839,
+								0.5,
+								0.9986789960369881,
+								0.0546875,
+								0.9537648612945839,
+								0,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 296571979093520,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

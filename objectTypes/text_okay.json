@@ -1,0 +1,10 @@
+{
+	"name": "text_okay",
+	"plugin-id": "Text",
+	"sid": 524932906240086,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

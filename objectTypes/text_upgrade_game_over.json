@@ -1,0 +1,10 @@
+{
+	"name": "text_upgrade_game_over",
+	"plugin-id": "Text",
+	"sid": 428081421073023,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

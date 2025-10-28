@@ -1,0 +1,24 @@
+{
+	"name": "text_UI",
+	"plugin-id": "Text",
+	"sid": 270399348362613,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 412922935962053
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pin",
+			"name": "Pin",
+			"sid": 209032394328599
+		}
+	],
+	"effectTypes": []
+}

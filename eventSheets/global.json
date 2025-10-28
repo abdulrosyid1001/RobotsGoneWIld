@@ -1,0 +1,96 @@
+{
+	"name": "global",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "is_story_done",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 273265696040790
+		},
+		{
+			"eventType": "variable",
+			"name": "is_boost_upgrade",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 737942544949504
+		},
+		{
+			"eventType": "variable",
+			"name": "curr_game_coin",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 566799458617328
+		},
+		{
+			"eventType": "variable",
+			"name": "menu_replay_state",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 113240741856340
+		},
+		{
+			"eventType": "variable",
+			"name": "is_pause",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 226452574296687
+		},
+		{
+			"eventType": "variable",
+			"name": "soundOff",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 902831011862770
+		},
+		{
+			"eventType": "variable",
+			"name": "MusicOff",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 146769551159230
+		},
+		{
+			"eventType": "variable",
+			"name": "MusicOff_by_setting",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 234458019506843
+		},
+		{
+			"eventType": "variable",
+			"name": "soundOff_by_setting",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 516701084567477
+		}
+	],
+	"sid": 940338869681387
+}

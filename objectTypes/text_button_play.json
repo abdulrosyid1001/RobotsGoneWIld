@@ -1,0 +1,10 @@
+{
+	"name": "text_button_play",
+	"plugin-id": "Text",
+	"sid": 902587786016828,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

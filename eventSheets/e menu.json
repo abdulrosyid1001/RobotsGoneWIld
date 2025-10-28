@@ -1,0 +1,1581 @@
+{
+	"name": "e menu",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "global"
+		},
+		{
+			"eventType": "variable",
+			"name": "start_coin_value",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 559665578342948
+		},
+		{
+			"eventType": "variable",
+			"name": "login_count",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 718801795304065
+		},
+		{
+			"eventType": "variable",
+			"name": "prev_day",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 249771605595881
+		},
+		{
+			"eventType": "variable",
+			"name": "gameloft_d",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 418500642199860
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 966650845898813
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "on_resize",
+					"sid": 479391625365793
+				},
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"runtime.globalVars.lang_state = lang_state;",
+						"",
+						"runtime.objects.text_button_play.getFirstPickedInstance().text = language[lang].play;",
+						"",
+						"if(sdk_state == SDK_GAMELOFTADS){",
+						"",
+						"\tif(window.is_preroll_done == false){",
+						"\t\truntime.callFunction(\"mute_music\");",
+						"\t}",
+						"",
+						"\twindow.dataLayer.push({",
+						"\t\t\"event\" : \"ga_event\",",
+						"\t\t\"ga_category\" : \"Gamepage\", ",
+						"\t\t\"ga_action\" : \"Main Menu\",",
+						"\t\t\"ga_label\": \"Robots Gone Wild\",",
+						"\t\t\"ga_noninteraction\" : true,",
+						"\t});",
+						"\t",
+						"}"
+					]
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "title",
+					"sid": 403492462913775,
+					"parameters": {
+						"frame-number": "lang_state"
+					}
+				},
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"if(window.remove_anchor_ad){",
+						"\twindow.remove_anchor_ad();",
+						"}"
+					]
+				}
+			],
+			"sid": 794481725652224
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 298525861151557
+				}
+			],
+			"actions": [
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 519069350531196,
+					"parameters": {
+						"key": "\"rogowi223\""
+					}
+				}
+			],
+			"sid": 729658964506731
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-missing",
+					"objectClass": "LocalStorage",
+					"sid": 610366691220790,
+					"parameters": {
+						"key": "\"rogowi223\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"runtime.globalVars.start_coin_value = start_coin_value;"
+					]
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 319223120696605,
+					"parameters": {
+						"key": "\"bestKills\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 440122875115812,
+					"parameters": {
+						"key": "\"bestMinutes\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 680632993491987,
+					"parameters": {
+						"key": "\"bestSeconds\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 561286962148490,
+					"disabled": true,
+					"parameters": {
+						"key": "\"coins\"",
+						"value": "9999"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 940923398864880,
+					"parameters": {
+						"key": "\"coins\"",
+						"value": "start_coin_value"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 911049484733111,
+					"parameters": {
+						"key": "\"upgradeHealth\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 390524421730482,
+					"parameters": {
+						"key": "\"upgradeArmor\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 525558395307498,
+					"parameters": {
+						"key": "\"upgradeSpeed\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 103168838793446,
+					"parameters": {
+						"key": "\"upgradeDamage\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 341007676434428,
+					"parameters": {
+						"key": "\"upgradeCostBase\"",
+						"value": "150"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "dictionary_save",
+					"sid": 382671656263190,
+					"parameters": {
+						"key": "\"upgradeCostMultiplier\"",
+						"value": "75"
+					}
+				},
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 617270362256885,
+					"parameters": {
+						"key": "\"rogowi223\""
+					}
+				}
+			],
+			"sid": 190085153645132
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 649507959544365,
+					"parameters": {
+						"key": "\"rogowi223\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "get-item",
+					"objectClass": "LocalStorage",
+					"sid": 522460282995053,
+					"parameters": {
+						"key": "\"rogowi223\""
+					}
+				},
+				{
+					"id": "load",
+					"objectClass": "dictionary_save",
+					"sid": 210594829919495,
+					"parameters": {
+						"json": "LocalStorage.ItemValue"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 728777505934250,
+					"parameters": {
+						"variable": "best_kills",
+						"value": "dictionary_save.Get(\"bestKills\")"
+					}
+				}
+			],
+			"sid": 936566386057629
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 491306071436696
+				}
+			],
+			"actions": [
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 592338603713409,
+					"parameters": {
+						"key": "\"story_state\""
+					}
+				}
+			],
+			"sid": 300990720881621
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-missing",
+					"objectClass": "LocalStorage",
+					"sid": 102068760044359,
+					"parameters": {
+						"key": "\"story_state\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-item",
+					"objectClass": "LocalStorage",
+					"sid": 570038638024900,
+					"parameters": {
+						"key": "\"story_state\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 874044788237246,
+					"parameters": {
+						"key": "\"story_state\""
+					}
+				}
+			],
+			"sid": 233955549155211
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 132798764570743,
+					"parameters": {
+						"key": "\"story_state\""
+					}
+				}
+			],
+			"actions": [],
+			"sid": 849320151327107,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 721573297579025,
+							"parameters": {
+								"first-value": "LocalStorage.ItemValue",
+								"comparison": 4,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 490535241578626,
+							"parameters": {
+								"variable": "is_story_done",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 561926724302208
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 766556940468081
+				}
+			],
+			"actions": [
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 470986676749392,
+					"parameters": {
+						"key": "\"prev_day\""
+					}
+				}
+			],
+			"sid": 989186489114079
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-missing",
+					"objectClass": "LocalStorage",
+					"sid": 993890732306598,
+					"parameters": {
+						"key": "\"prev_day\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-item",
+					"objectClass": "LocalStorage",
+					"sid": 619078051935358,
+					"parameters": {
+						"key": "\"prev_day\"",
+						"value": "-1"
+					}
+				},
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 166978515955676,
+					"parameters": {
+						"key": "\"prev_day\""
+					}
+				}
+			],
+			"sid": 185083322594646
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 955118218905487,
+					"parameters": {
+						"key": "\"prev_day\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 521548392585469,
+					"parameters": {
+						"variable": "prev_day",
+						"value": "LocalStorage.ItemValue"
+					}
+				}
+			],
+			"sid": 772908411668813
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 634006580391515
+				}
+			],
+			"actions": [
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 146831311051461,
+					"parameters": {
+						"key": "\"login_count\""
+					}
+				}
+			],
+			"sid": 910988495894975
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-missing",
+					"objectClass": "LocalStorage",
+					"sid": 889020278527695,
+					"parameters": {
+						"key": "\"login_count\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-item",
+					"objectClass": "LocalStorage",
+					"sid": 460645545827680,
+					"parameters": {
+						"key": "\"login_count\"",
+						"value": "0"
+					}
+				},
+				{
+					"id": "check-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 391764345989137,
+					"parameters": {
+						"key": "\"login_count\""
+					}
+				}
+			],
+			"sid": 961913576264393
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-exists",
+					"objectClass": "LocalStorage",
+					"sid": 997477618505274,
+					"parameters": {
+						"key": "\"login_count\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 650732246781727,
+					"parameters": {
+						"variable": "login_count",
+						"value": "LocalStorage.ItemValue"
+					}
+				},
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"switch(sdk_state){",
+						"\tcase SDK_GAMELOFTADS:",
+						"",
+						"\tvar date = new Date(Date.now());",
+						"\tvar curr_day = date.getDay();",
+						"\tconsole.log(\"curr_day:\" + curr_day);",
+						"",
+						"\tif(curr_day != runtime.globalVars.prev_day){",
+						"\t\truntime.globalVars.login_count += 1;",
+						"\t\truntime.storage.setItem(\"login_count\", runtime.globalVars.login_count);",
+						"\t\t",
+						"\t\truntime.globalVars.prev_day = curr_day;",
+						"\t\truntime.storage.setItem(\"prev_day\", runtime.globalVars.prev_day);",
+						"\t\t",
+						"\t\tvar d_str = \"\";",
+						"\t\t",
+						"\t\tif(runtime.globalVars.login_count < 10){",
+						"\t\t\td_str = \"D0\" + runtime.globalVars.login_count.toString() + \" - Robots Gone Wild\";",
+						"\t\t}",
+						"\t\telse{",
+						"\t\t\td_str = \"D\" + runtime.globalVars.login_count.toString() + \" - Robots Gone Wild\";",
+						"\t\t}",
+						"\t\t",
+						"\t\twindow.dataLayer.push({",
+						"\t\t\t\"event\" : \"ga_event\",",
+						"\t\t\t\"ga_category\" : \"Gamepage\", ",
+						"\t\t\t\"ga_action\" : \"Return\",",
+						"\t\t\t\"ga_label\": d_str,",
+						"\t\t\t\"ga_noninteraction\" : true,",
+						"\t\t});",
+						"\t\t\t\t",
+						"\t}",
+						"",
+						"\tbreak;",
+						"}",
+						"",
+						"",
+						""
+					]
+				}
+			],
+			"sid": 504972293419952
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 300155361025714
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"if(is_cookie_exist(\"music_state\")){",
+						" \tvar state = Number(get_cookie(\"music_state\"));",
+						"\truntime.globalVars.MusicOff = state;",
+						"\t// console.log(runtime.globalVars.MusicOff);",
+						"\t",
+						"\tswitch(state){",
+						"\t\tcase 0:",
+						"\t\t\truntime.globalVars.MusicOff_by_setting = false;",
+						"\t\tbreak;",
+						"\t\tcase 1:",
+						"\t\t\truntime.globalVars.MusicOff_by_setting = true;",
+						"\t\tbreak;",
+						"\t}",
+						"}",
+						"",
+						"if(is_cookie_exist(\"sound_state\")){",
+						"\tvar state = Number(get_cookie(\"sound_state\"));",
+						"\truntime.globalVars.soundOff = state;",
+						"\t// console.log(runtime.globalVars.soundOff);",
+						"\t",
+						"\tswitch(state){",
+						"\t\tcase 0:",
+						"\t\t\truntime.globalVars.soundOff_by_setting = false;",
+						"\t\tbreak;",
+						"\t\tcase 1:",
+						"\t\t\truntime.globalVars.soundOff_by_setting = true;",
+						"\t\tbreak;",
+						"\t}",
+						"}",
+						"",
+						""
+					]
+				}
+			],
+			"sid": 676520711976313,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "btSound",
+							"sid": 123834620371477,
+							"parameters": {
+								"object": "btSetting",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "btMusic",
+							"sid": 797663858924210,
+							"parameters": {
+								"object": "btSetting",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "btInfo",
+							"sid": 522425995269337,
+							"parameters": {
+								"object": "btSetting",
+								"image-point-optional": "0"
+							}
+						}
+					],
+					"sid": 634313820079300
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-scale",
+							"objectClass": "btPlay",
+							"sid": 470304838621701,
+							"parameters": {
+								"scale": "0"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "btPlay",
+							"sid": 754398099619559,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"size\"",
+								"property": "size",
+								"end-x": "196.98",
+								"end-y": "81.48",
+								"time": "0.5",
+								"ease": "easeoutbounce",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 731860232848042
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "btSound",
+							"sid": 502661371058941,
+							"parameters": {
+								"comparison": 1,
+								"number": "soundOff"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "btSound",
+							"sid": 945468179890843,
+							"parameters": {
+								"frame-number": "soundOff"
+							}
+						}
+					],
+					"sid": 823040498844212
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "btMusic",
+							"sid": 649924387834945,
+							"parameters": {
+								"comparison": 1,
+								"number": "MusicOff"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "btMusic",
+							"sid": 476277451862873,
+							"parameters": {
+								"frame-number": "MusicOff"
+							}
+						}
+					],
+					"sid": 645508506951248
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 582575569799125,
+					"parameters": {
+						"variable": "MusicOff"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [],
+			"sid": 798124770286797,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-tag-playing",
+							"objectClass": "Audio",
+							"sid": 917028306101014,
+							"parameters": {
+								"tag": "\"bgm\""
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 829552449897783,
+							"parameters": {
+								"audio-file": "Main_Music",
+								"loop": "looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"bgm\""
+							}
+						}
+					],
+					"sid": 521319348007876
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "text_UI",
+					"sid": 496654965233022,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "2"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 426957089937738,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-text",
+							"objectClass": "text_UI",
+							"sid": 343700965580140,
+							"parameters": {
+								"text-to-compare": "dictionary_save.Get(\"coins\")",
+								"case-sensitivity": "ignore-case"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "text_UI",
+							"sid": 488200822115809,
+							"parameters": {
+								"text": "dictionary_save.Get(\"coins\")"
+							}
+						}
+					],
+					"sid": 817101424140656
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 736494935266154,
+					"parameters": {
+						"object": "btSetting",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "btSetting",
+					"sid": 607963561414106,
+					"parameters": {
+						"width": "Self.Width - 8",
+						"height": "Self.Height - 8"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 948924470605930,
+					"parameters": {
+						"seconds": "0.1",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "btSetting",
+					"sid": 644711418070647,
+					"parameters": {
+						"width": "Self.Width + 8",
+						"height": "Self.Height + 8"
+					}
+				},
+				{
+					"id": "toggle-boolean-instvar",
+					"objectClass": "btSetting",
+					"sid": 206949673609868,
+					"parameters": {
+						"instance-variable": "active"
+					}
+				}
+			],
+			"sid": 116026564576082,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 540817492701097,
+							"parameters": {
+								"variable": "soundOff"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 525258135042675,
+							"parameters": {
+								"audio-file": "Settings_SFX",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"sfx\""
+							}
+						}
+					],
+					"sid": 107408045032484
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "btSetting",
+							"sid": 277030744708786,
+							"parameters": {
+								"instance-variable": "active"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "btSound",
+							"sid": 353585357128667,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "btSetting.Y",
+								"time": "0.2",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "btMusic",
+							"sid": 688518307610183,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "btSetting.Y",
+								"time": "0.2",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "btInfo",
+							"sid": 407783852069620,
+							"disabled": true,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "btSetting.Y",
+								"time": "0.2",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 591070873164756
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "btSetting",
+							"sid": 547582280850687,
+							"parameters": {
+								"instance-variable": "active"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "btSound",
+							"sid": 804590154327977,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "32+btSetting.Y *2",
+								"time": "0.5",
+								"ease": "easeoutback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "btMusic",
+							"sid": 629548981487188,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "32+btSetting.Y *3",
+								"time": "0.5",
+								"ease": "easeoutback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "btInfo",
+							"sid": 101740116978494,
+							"disabled": true,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"out\"",
+								"property": "offsetY",
+								"end-value": "32+btSetting.Y *4",
+								"time": "0.5",
+								"ease": "easeoutback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 296772556918765
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 424564332450746,
+					"parameters": {
+						"object": "btSound",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 690718218476117,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "btSetting",
+							"sid": 225641045180395,
+							"parameters": {
+								"instance-variable": "active"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "btSound",
+							"sid": 308531995734997,
+							"parameters": {
+								"width": "Self.Width - 8",
+								"height": "Self.Height - 8"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 916345295935408,
+							"parameters": {
+								"seconds": "0.1",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "btSound",
+							"sid": 463780174790330,
+							"parameters": {
+								"width": "Self.Width + 8",
+								"height": "Self.Height + 8"
+							}
+						},
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 986199924781026,
+							"parameters": {
+								"variable": "soundOff"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"set_cookie(\"sound_state\", Number(runtime.globalVars.soundOff));"
+							]
+						}
+					],
+					"sid": 881691777756435
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 840208433008704,
+					"parameters": {
+						"object": "btMusic",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 788017965726985,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "btSetting",
+							"sid": 954510762692738,
+							"parameters": {
+								"instance-variable": "active"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "btMusic",
+							"sid": 320487493484860,
+							"parameters": {
+								"width": "Self.Width - 8",
+								"height": "Self.Height - 8"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 699573898403713,
+							"parameters": {
+								"seconds": "0.1",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "btMusic",
+							"sid": 785046970200559,
+							"parameters": {
+								"width": "Self.Width + 8",
+								"height": "Self.Height + 8"
+							}
+						},
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 543546283359196,
+							"parameters": {
+								"variable": "MusicOff"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"set_cookie(\"music_state\", Number(runtime.globalVars.MusicOff));"
+							]
+						}
+					],
+					"sid": 659484348956528,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 614315166753730,
+									"parameters": {
+										"variable": "MusicOff"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 911074667468463,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 222342526199799,
+											"parameters": {
+												"tag": "\"bgm\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 933647500136814,
+											"parameters": {
+												"audio-file": "Main_Music",
+												"loop": "looping",
+												"volume": "0",
+												"stereo-pan": "0",
+												"tag-optional": "\"bgm\""
+											}
+										}
+									],
+									"sid": 541605216044695
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 576854182933847,
+									"parameters": {
+										"variable": "MusicOff"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 216351382442305,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 265233040809779,
+											"parameters": {
+												"tag": "\"bgm\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 965859098289757,
+											"parameters": {
+												"tag": "\"bgm\""
+											}
+										}
+									],
+									"sid": 805620630379635
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "btSound",
+					"sid": 367714099368729,
+					"parameters": {
+						"comparison": 1,
+						"number": "soundOff"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation-frame",
+					"objectClass": "btSound",
+					"sid": 686530038523573,
+					"parameters": {
+						"frame-number": "soundOff"
+					}
+				}
+			],
+			"sid": 610275694266834
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "btMusic",
+					"sid": 703919913803027,
+					"parameters": {
+						"comparison": 1,
+						"number": "MusicOff"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation-frame",
+					"objectClass": "btMusic",
+					"sid": 547933149808205,
+					"parameters": {
+						"frame-number": "MusicOff"
+					}
+				}
+			],
+			"sid": 386642097626976
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 213578552590722,
+					"parameters": {
+						"object": "btPlay",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "btPlay",
+					"sid": 530585755211926,
+					"parameters": {
+						"width": "Self.Width - 8",
+						"height": "Self.Height - 8"
+					}
+				}
+			],
+			"sid": 501932734848858,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 665056361166354,
+							"parameters": {
+								"variable": "soundOff"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 876617913914248,
+							"parameters": {
+								"audio-file": "Play_SFX",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"sfx\""
+							}
+						}
+					],
+					"sid": 792607017602858
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 237577727066203,
+							"parameters": {
+								"seconds": "0.1",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "btPlay",
+							"sid": 589350153669061,
+							"parameters": {
+								"width": "Self.Width + 8",
+								"height": "Self.Height + 8"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 562780562524149,
+							"parameters": {
+								"seconds": "0.1",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "request-fullscreen",
+							"objectClass": "Browser",
+							"sid": 551680358015578,
+							"parameters": {
+								"mode": "stretch-scale-outer",
+								"navigation-ui": "auto"
+							}
+						}
+					],
+					"sid": 788366510983665,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 856733156023435,
+									"parameters": {
+										"variable": "menu_replay_state",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 224051243627418
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 451952508486976
+								}
+							],
+							"actions": [],
+							"sid": 227099989108341
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 998075342124723,
+									"parameters": {
+										"variable": "is_story_done"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 319089381619509,
+									"parameters": {
+										"variable": "menu_replay_state",
+										"value": "1"
+									}
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 367740996785831,
+									"parameters": {
+										"layout": "Game"
+									}
+								}
+							],
+							"sid": 772182439548127
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 793247950845436
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 503004771817415,
+									"parameters": {
+										"variable": "menu_replay_state",
+										"value": "1"
+									}
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 192261624457281,
+									"parameters": {
+										"layout": "Story"
+									}
+								}
+							],
+							"sid": 213599888281843
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 688583855344414
+				}
+			],
+			"actions": [],
+			"sid": 548110900479324
+		}
+	],
+	"sid": 902565166231355
+}

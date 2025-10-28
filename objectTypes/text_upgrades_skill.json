@@ -1,0 +1,10 @@
+{
+	"name": "text_upgrades_skill",
+	"plugin-id": "Text",
+	"sid": 586990008226096,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

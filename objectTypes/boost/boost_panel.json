@@ -1,0 +1,60 @@
+{
+	"name": "boost_panel",
+	"plugin-id": "Sprite",
+	"sid": 784024013743636,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 686,
+						"height": 527,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4499668,
+						"collisionPoly": {
+							"points": [
+								0.22011661807580174,
+								0.286527514231499,
+								0.5,
+								0.12144212523719165,
+								0.7434402332361516,
+								0.33396584440227706,
+								0.8134110787172012,
+								0.5,
+								0.7419825072886297,
+								0.6641366223908919,
+								0.5,
+								0.9563567362428842,
+								0.17055393586005832,
+								0.777988614800759,
+								0.2055393586005831,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 462064680925090,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

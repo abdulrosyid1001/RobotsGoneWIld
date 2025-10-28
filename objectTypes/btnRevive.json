@@ -1,0 +1,120 @@
+{
+	"name": "btnRevive",
+	"plugin-id": "Sprite",
+	"sid": 463996520763440,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 205831045014000
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 274,
+						"height": 120,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3440285,
+						"collisionPoly": {
+							"points": [
+								0.8686131386861314,
+								0,
+								0.9781021897810219,
+								0.008333333333333333,
+								1,
+								0.06666666666666667,
+								1,
+								0.35833333333333334,
+								0.8394160583941606,
+								1,
+								0.7481751824817519,
+								1,
+								0.1386861313868613,
+								0.9916666666666667,
+								0.043795620437956206,
+								0.95,
+								0.025547445255474453,
+								0.9083333333333333,
+								0.0072992700729927005,
+								0.8,
+								0.0072992700729927005,
+								0.26666666666666666,
+								0.021897810218978103,
+								0.19166666666666668,
+								0.0948905109489051,
+								0.1
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 274,
+						"height": 120,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2878899,
+						"collisionPoly": {
+							"points": [
+								0.8686131386861314,
+								0,
+								0.9781021897810219,
+								0.008333333333333333,
+								1,
+								0.06666666666666667,
+								1,
+								0.35833333333333334,
+								0.8394160583941606,
+								1,
+								0.7481751824817519,
+								1,
+								0.1386861313868613,
+								0.9916666666666667,
+								0.043795620437956206,
+								0.95,
+								0.025547445255474453,
+								0.9083333333333333,
+								0.0072992700729927005,
+								0.8,
+								0.0072992700729927005,
+								0.26666666666666666,
+								0.021897810218978103,
+								0.19166666666666668,
+								0.0948905109489051,
+								0.1
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 746447554374585,
+				"name": "Animation 1",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

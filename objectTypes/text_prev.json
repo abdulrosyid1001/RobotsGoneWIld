@@ -1,0 +1,10 @@
+{
+	"name": "text_prev",
+	"plugin-id": "Text",
+	"sid": 984660146056537,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

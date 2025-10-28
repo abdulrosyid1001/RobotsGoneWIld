@@ -1,0 +1,10 @@
+{
+	"name": "text_your_extra_coin",
+	"plugin-id": "Text",
+	"sid": 418390933887711,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

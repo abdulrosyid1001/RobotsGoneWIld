@@ -1,0 +1,86 @@
+{
+	"name": "spinningBall",
+	"plugin-id": "Sprite",
+	"sid": 190738681950158,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "tmpAngle",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 988784690962900
+		},
+		{
+			"name": "damage",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 455842256210268
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 981143172598944
+		},
+		{
+			"behaviorId": "Rotate",
+			"name": "Rotate",
+			"sid": 262995694278733
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 40,
+						"height": 40,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 363783,
+						"collisionPoly": {
+							"points": [
+								0.175,
+								0.175,
+								0.5,
+								0.05,
+								0.825,
+								0.175,
+								0.95,
+								0.5,
+								0.825,
+								0.825,
+								0.5,
+								0.95,
+								0.175,
+								0.825,
+								0.05,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 898207558313428,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

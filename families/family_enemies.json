@@ -1,0 +1,59 @@
+{
+	"name": "family_enemies",
+	"plugin-id": "Sprite",
+	"sid": 391733371462107,
+	"instanceVariables": [
+		{
+			"name": "healthFam",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 946297422407242
+		},
+		{
+			"name": "damageFam",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 692664963550979
+		},
+		{
+			"name": "extraDrop",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 259735662039668
+		},
+		{
+			"name": "push",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 302471414092838
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "MoveTo",
+			"name": "MoveTo2",
+			"sid": 276084873601117
+		},
+		{
+			"behaviorId": "Bullet",
+			"name": "Bullet",
+			"sid": 782946822286964
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"enemy_1",
+		"enemy_2",
+		"enemy_3",
+		"enemy_4",
+		"enemy_5",
+		"boss_1",
+		"boss_2",
+		"boss_3",
+		"boss_4"
+	]
+}

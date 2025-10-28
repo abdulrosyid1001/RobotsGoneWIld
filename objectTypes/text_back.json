@@ -1,0 +1,10 @@
+{
+	"name": "text_back",
+	"plugin-id": "Text",
+	"sid": 635196302474753,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

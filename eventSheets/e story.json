@@ -1,0 +1,528 @@
+{
+	"name": "e story",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "lang_state",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 990680411926271
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "global"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 869772294669414
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"runtime.globalVars.lang_state = lang_state;",
+						"",
+						"var text_prev = runtime.objects.text_prev.getFirstPickedInstance();",
+						"",
+						"runtime.objects.text_skip.getFirstPickedInstance().text = language[lang].skip;",
+						"runtime.objects.text_next.getFirstPickedInstance().text = language[lang].next;",
+						"text_prev.text = language[lang].prev;",
+						"",
+						"if(lang == \"fr\"){",
+						"\ttext_prev.sizePt = 24;",
+						"}"
+					]
+				}
+			],
+			"sid": 830225197906772
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 867263691416358
+				}
+			],
+			"actions": [
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 380340401747304,
+					"parameters": {
+						"tag": "\"story\"",
+						"file": "Story Telling.json"
+					}
+				}
+			],
+			"sid": 981162825782710
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 723422594139378,
+					"parameters": {
+						"tag": "\"story\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "ArrayStory",
+					"sid": 167584652501848,
+					"parameters": {
+						"json": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "text_UI",
+					"sid": 171216714551566,
+					"parameters": {
+						"text": "\"\""
+					}
+				},
+				{
+					"id": "typewriter-text",
+					"objectClass": "text_UI",
+					"sid": 238154180209329,
+					"disabled": true,
+					"parameters": {
+						"text": "ArrayStory.At(Story.AnimationFrame)",
+						"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+					}
+				},
+				{
+					"id": "typewriter-text",
+					"objectClass": "text_UI",
+					"sid": 983236934592692,
+					"parameters": {
+						"text": "ArrayStory.At(Story.AnimationFrame, lang_state)",
+						"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+					}
+				}
+			],
+			"sid": 996546940431950
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "Story",
+					"sid": 437123236935617,
+					"parameters": {
+						"comparison": 0,
+						"number": "0"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 694861921730589,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "btStory",
+							"sid": 863312216480456,
+							"parameters": {
+								"animation": "\"prev\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "btStory",
+							"sid": 256759102972196,
+							"parameters": {
+								"frame-number": "0"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"runtime.objects.text_prev.getFirstPickedInstance().text = language[lang].back;"
+							]
+						}
+					],
+					"sid": 831073519019254
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "Story",
+					"sid": 580954396226888,
+					"parameters": {
+						"comparison": 1,
+						"number": "0"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 578018152248845,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "btStory",
+							"sid": 248782638185864,
+							"parameters": {
+								"animation": "\"prev\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "btStory",
+							"sid": 920315957633091,
+							"parameters": {
+								"frame-number": "1"
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"runtime.objects.text_prev.getFirstPickedInstance().text = language[lang].prev;"
+							]
+						}
+					],
+					"sid": 737491370509547
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 665440575999299,
+					"parameters": {
+						"object": "btStory",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "btStory",
+					"sid": 190241856753213,
+					"parameters": {
+						"width": "Self.Width - 8",
+						"height": "Self.Height - 8"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 911089302560898,
+					"parameters": {
+						"seconds": "0.1",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "btStory",
+					"sid": 156576355638640,
+					"parameters": {
+						"width": "Self.Width + 8",
+						"height": "Self.Height + 8"
+					}
+				}
+			],
+			"sid": 561665683009031,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "btStory",
+							"sid": 977726188968176,
+							"parameters": {
+								"animation": "\"prev\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 855647126555834,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "Story",
+									"sid": 810142778370069,
+									"parameters": {
+										"comparison": 3,
+										"number": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 271931553438301,
+									"parameters": {
+										"layout": "Menu"
+									}
+								}
+							],
+							"sid": 577923011901446
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "Story",
+									"sid": 858584607488697,
+									"parameters": {
+										"comparison": 4,
+										"number": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 739384918778108,
+									"parameters": {
+										"seconds": "0.1",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "Story",
+									"sid": 328649174045667,
+									"parameters": {
+										"frame-number": "Self.AnimationFrame - 1"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "text_UI",
+									"sid": 409374468211153,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"id": "typewriter-text",
+									"objectClass": "text_UI",
+									"sid": 819203015394033,
+									"disabled": true,
+									"parameters": {
+										"text": "ArrayStory.At(Story.AnimationFrame)",
+										"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+									}
+								},
+								{
+									"id": "typewriter-text",
+									"objectClass": "text_UI",
+									"sid": 720289111165053,
+									"parameters": {
+										"text": "ArrayStory.At(Story.AnimationFrame, lang_state)",
+										"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+									}
+								}
+							],
+							"sid": 538193428752704
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "btStory",
+							"sid": 785832525716067,
+							"parameters": {
+								"animation": "\"next\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 939562183419209,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "Story",
+									"sid": 493228482266818,
+									"parameters": {
+										"comparison": 2,
+										"number": "Self.AnimationFrameCount - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 156795201741684,
+									"parameters": {
+										"seconds": "0.1",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "Story",
+									"sid": 314349190623342,
+									"parameters": {
+										"frame-number": "Self.AnimationFrame + 1"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "text_UI",
+									"sid": 526693583677205,
+									"parameters": {
+										"text": "\"\""
+									}
+								},
+								{
+									"id": "typewriter-text",
+									"objectClass": "text_UI",
+									"sid": 225861431455840,
+									"disabled": true,
+									"parameters": {
+										"text": "ArrayStory.At(Story.AnimationFrame)",
+										"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+									}
+								},
+								{
+									"id": "typewriter-text",
+									"objectClass": "text_UI",
+									"sid": 423481809852214,
+									"parameters": {
+										"text": "ArrayStory.At(Story.AnimationFrame, lang_state)",
+										"duration": "len(ArrayStory.At(Story.AnimationFrame))/70"
+									}
+								}
+							],
+							"sid": 403262776831942
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "Story",
+									"sid": 946674756776016,
+									"parameters": {
+										"comparison": 5,
+										"number": "Self.AnimationFrameCount -1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 459372199589368,
+									"parameters": {
+										"layout": "Game"
+									}
+								}
+							],
+							"sid": 235609651712049
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "btStory",
+							"sid": 851281971511986,
+							"parameters": {
+								"animation": "\"skip\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 302011723748872,
+							"parameters": {
+								"layout": "Game"
+							}
+						}
+					],
+					"sid": 347200187021618
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-end-of-layout",
+					"objectClass": "System",
+					"sid": 100410651480794
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 131077393469335,
+					"parameters": {
+						"variable": "is_story_done",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-item",
+					"objectClass": "LocalStorage",
+					"sid": 684974086389185,
+					"parameters": {
+						"key": "\"story_state\"",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 399814633923118
+		}
+	],
+	"sid": 568761550456894
+}

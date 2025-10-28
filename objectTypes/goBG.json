@@ -1,0 +1,58 @@
+{
+	"name": "goBG",
+	"plugin-id": "Sprite",
+	"sid": 311572328012331,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 615,
+						"height": 653,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3494112,
+						"collisionPoly": {
+							"points": [
+								0.03739837398373984,
+								0.021439509954058193,
+								1,
+								0.05206738131699847,
+								0.9512195121951219,
+								0.8713629402756509,
+								0.8910569105691057,
+								0.9555895865237366,
+								0.8292682926829268,
+								0.9770290964777948,
+								0.15284552845528454,
+								0.9739663093415007,
+								0.061788617886178863,
+								0.9050535987748851
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 974737589781759,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

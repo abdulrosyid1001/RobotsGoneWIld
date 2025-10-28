@@ -1,0 +1,10 @@
+{
+	"name": "text_drag_to_move",
+	"plugin-id": "Text",
+	"sid": 482319758567842,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

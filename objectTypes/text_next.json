@@ -1,0 +1,10 @@
+{
+	"name": "text_next",
+	"plugin-id": "Text",
+	"sid": 337699063505512,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

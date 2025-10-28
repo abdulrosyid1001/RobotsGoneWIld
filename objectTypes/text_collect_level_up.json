@@ -1,0 +1,10 @@
+{
+	"name": "text_collect_level_up",
+	"plugin-id": "Text",
+	"sid": 144355497905014,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

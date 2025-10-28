@@ -1,0 +1,10 @@
+{
+	"name": "text_are_you_sure",
+	"plugin-id": "Text",
+	"sid": 231897098644363,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

@@ -1,0 +1,42 @@
+{
+    "c2array": true,
+    "size": [
+        4,
+        2,
+        1
+    ],
+    "data": [
+        [
+            [
+                "Tom, a young engineer, was working on a top secret project for a large tech company. The project was aimed at creating advanced robots that can help humans."
+            ],
+            [
+                "Tom, un jeune ingénieur, travaillait sur un projet top secret pour une grande entreprise technologique. Le projet visait à créer des robots avancés pour aider les humains."
+            ]
+        ],
+        [
+            [
+                "However, things took a turn for the worst when the robots malfunctioned and became wild!"
+            ],
+            [
+                "Cependant, les choses ont pris une mauvaise tournure lorsque les robots ont mal fonctionné et sont devenus incontrôlables !"
+            ]
+        ],
+        [
+            [
+                "Tom must now run and fight to escape the robots to survive.\nThe robots come with various abilities and weaknesses."
+            ],
+            [
+                "Tom doit maintenant courir et se battre pour échapper aux robots et survivre. Les robots possèdent diverses capacités et faiblesses."
+            ]
+        ],
+        [
+            [
+                "Help Tom fight against all bots that went wild.\nHelp him survive as long as possible."
+            ],
+            [
+                "Aidez Tom à combattre tous les robots devenus fous. Aidez-le à survivre le plus longtemps possible."
+            ]
+        ]
+    ]
+}

@@ -1,0 +1,8 @@
+{
+	"name": "dictionary_playerStats",
+	"plugin-id": "Dictionary",
+	"sid": 154881770484497,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": []
+}
