@@ -1928,6 +1928,46 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "on-any-touch-start",
+									"objectClass": "Touch",
+									"sid": 333700910550169
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "joystick_bg",
+									"sid": 186409538425235,
+									"parameters": {
+										"x": "Touch.X(joystick_bg.LayerName)",
+										"y": "Touch.Y(joystick_bg.LayerName)"
+									}
+								},
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "joystick_line",
+									"sid": 422303789279774,
+									"parameters": {
+										"object": "joystick_bg",
+										"image-point-optional": "0"
+									}
+								},
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "joystick_thumb",
+									"sid": 461648695612268,
+									"parameters": {
+										"object": "joystick_bg",
+										"image-point-optional": "0"
+									}
+								}
+							],
+							"sid": 552093128533333
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "is-in-touch",
 									"objectClass": "Touch",
 									"sid": 225755695218190
@@ -2117,6 +2157,83 @@
 								}
 							],
 							"sid": 283503050716590
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 521342750949028,
+									"parameters": {
+										"first-value": "playerAngle",
+										"comparison": 4,
+										"second-value": "90"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 853225521596832,
+									"parameters": {
+										"first-value": "playerAngle",
+										"comparison": 2,
+										"second-value": "280"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 630912806596825,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-mirrored",
+											"objectClass": "player",
+											"sid": 863459157787732,
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-mirrored",
+											"objectClass": "player",
+											"sid": 255614004315381,
+											"parameters": {
+												"state": "mirrored"
+											}
+										}
+									],
+									"sid": 333372596649765
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 591024618447267
+								},
+								{
+									"id": "is-mirrored",
+									"objectClass": "player",
+									"sid": 741826124946997
+								}
+							],
+							"actions": [
+								{
+									"id": "set-mirrored",
+									"objectClass": "player",
+									"sid": 885409693667390,
+									"parameters": {
+										"state": "not-mirrored"
+									}
+								}
+							],
+							"sid": 481741471070346
 						}
 					]
 				},
@@ -8129,7 +8246,7 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 411993115871912,
+							"sid": 476318288585660,
 							"parameters": {
 								"variable": "health",
 								"value": "startHealth"
@@ -8990,6 +9107,31 @@
 						}
 					],
 					"sid": 431237849321548
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 763718206291167,
+							"parameters": {
+								"key": 88
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 876360297428531,
+							"parameters": {
+								"variable": "levelProgress",
+								"value": "50"
+							}
+						}
+					],
+					"sid": 595574033774507
 				},
 				{
 					"functionName": "damagePlayer",
@@ -10479,7 +10621,8 @@
 									"language": "javascript",
 									"script": [
 										"playerProperties.temporaryUpgrades.health++;",
-										"runtime.globalVars.health = runtime.globalVars.startHealth + (playerProperties.temporaryUpgrades.health * playerProperties.additionAbilities.health);"
+										"runtime.globalVars.health = runtime.globalVars.startHealth + (playerProperties.temporaryUpgrades.health * playerProperties.addTemporaryAbilities.health);",
+										"console.log(\"totalHealth\", runtime.globalVars.health);"
 									]
 								},
 								{
@@ -10553,7 +10696,7 @@
 									"language": "javascript",
 									"script": [
 										"playerProperties.temporaryUpgrades.speed++;",
-										"runtime.callFunction(\"setAbilitesTotal\");"
+										"runtime.callFunction(\"setAbilitiesTotal\");"
 									]
 								}
 							],
@@ -12497,7 +12640,6 @@
 									"type": "script",
 									"language": "javascript",
 									"script": [
-										"console.log(permanentUpgrades);",
 										"for(var i = 1; i<= 4; i++){",
 										"\tlet PUkey = Object.keys(playerProperties.permanentUpgrades)[i-1];",
 										"\tconst frame = playerProperties.permanentUpgrades[PUkey];",
@@ -14757,7 +14899,7 @@
 			"sid": 584506027216855
 		},
 		{
-			"functionName": "setAbilitesTotal",
+			"functionName": "setAbilitiesTotal",
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -14780,7 +14922,11 @@
 						"runtime.globalVars.playerDamageTotal =  baseAb.damage + (addPermAb.damage*lvlPermAb.damage) + (addTempAb.damage * lvltempAb.damage);",
 						"runtime.globalVars.playerHealthTotal =  baseAb.health + (addPermAb.health*lvlPermAb.health) + (addTempAb.health * lvltempAb.health);",
 						"runtime.globalVars.playerSpeedTotal =  baseAb.speed + (addPermAb.speed*lvlPermAb.speed) + (addTempAb.speed * lvltempAb.speed);",
-						"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (addPermAb.defense*lvlPermAb.defense) + (addTempAb.defense * lvltempAb.defense);"
+						"runtime.globalVars.playerDefenseTotal =  baseAb.defense + (addPermAb.defense*lvlPermAb.defense) + (addTempAb.defense * lvltempAb.defense);",
+						"",
+						"console.log(\"damageTotal\", runtime.globalVars.playerDamageTotal);",
+						"console.log(\"speedTotal\", runtime.globalVars.playerSpeedTotal);",
+						"console.log(\"defenseTotal\", runtime.globalVars.playerDefenseTotal);"
 					]
 				}
 			],
