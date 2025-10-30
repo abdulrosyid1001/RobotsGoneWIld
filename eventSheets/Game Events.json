@@ -2164,7 +2164,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 521342750949028,
+									"sid": 325307450809981,
 									"parameters": {
 										"first-value": "playerAngle",
 										"comparison": 4,
@@ -2174,7 +2174,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 853225521596832,
+									"sid": 836821600988025,
 									"parameters": {
 										"first-value": "playerAngle",
 										"comparison": 2,
@@ -2183,7 +2183,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 630912806596825,
+							"sid": 260865076961301,
 							"children": [
 								{
 									"eventType": "block",
@@ -2191,7 +2191,7 @@
 										{
 											"id": "is-mirrored",
 											"objectClass": "player",
-											"sid": 863459157787732,
+											"sid": 683697068748029,
 											"isInverted": true
 										}
 									],
@@ -2199,13 +2199,13 @@
 										{
 											"id": "set-mirrored",
 											"objectClass": "player",
-											"sid": 255614004315381,
+											"sid": 193312990359484,
 											"parameters": {
 												"state": "mirrored"
 											}
 										}
 									],
-									"sid": 333372596649765
+									"sid": 376295183469561
 								}
 							]
 						},
@@ -2215,25 +2215,25 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 591024618447267
+									"sid": 439388681941126
 								},
 								{
 									"id": "is-mirrored",
 									"objectClass": "player",
-									"sid": 741826124946997
+									"sid": 909121344406264
 								}
 							],
 							"actions": [
 								{
 									"id": "set-mirrored",
 									"objectClass": "player",
-									"sid": 885409693667390,
+									"sid": 288681496094211,
 									"parameters": {
 										"state": "not-mirrored"
 									}
 								}
 							],
-							"sid": 481741471070346
+							"sid": 704311632291965
 						}
 					]
 				},
@@ -10621,7 +10621,8 @@
 									"language": "javascript",
 									"script": [
 										"playerProperties.temporaryUpgrades.health++;",
-										"runtime.globalVars.health = runtime.globalVars.startHealth + (playerProperties.temporaryUpgrades.health * playerProperties.addTemporaryAbilities.health);",
+										"runtime.callFunction(\"setAbilitiesTotal\");",
+										"runtime.globalVars.health = runtime.globalVars.playerHealthTotal;",
 										"console.log(\"totalHealth\", runtime.globalVars.health);"
 									]
 								},
@@ -12484,7 +12485,8 @@
 							"type": "script",
 							"language": "javascript",
 							"script": [
-								"console.log(localVars.type, localVars.lvl);"
+								"console.log(localVars.type, localVars.lvl);",
+								"runtime.callFunction(\"setAbilitiesTotal\");"
 							]
 						}
 					],
@@ -12746,13 +12748,6 @@
 					"conditions": [],
 					"actions": [
 						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"before reduce coins\", runtime.globalVars.coins);"
-							]
-						},
-						{
 							"id": "subtract-from-eventvar",
 							"objectClass": "System",
 							"sid": 202009227438866,
@@ -12760,13 +12755,6 @@
 								"variable": "coins",
 								"value": "Functions.get_upgrade_prize(lvlUpgrade)"
 							}
-						},
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"now coins\", runtime.globalVars.coins);"
-							]
 						}
 					],
 					"sid": 198247207321114,
@@ -12862,15 +12850,7 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(localVars.type, localVars.lvlUpgrade);"
-							]
-						}
-					],
+					"actions": [],
 					"sid": 139342825953049,
 					"children": [
 						{
@@ -14874,6 +14854,34 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 430305529397837,
+					"parameters": {
+						"interval-seconds": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"language": "javascript",
+					"script": [
+						"console.log(\"damageTotal\", runtime.globalVars.playerDamageTotal);",
+						"console.log(\"speedTotal\", runtime.globalVars.playerSpeedTotal);",
+						"console.log(\"defenseTotal\", runtime.globalVars.playerDefenseTotal);",
+						"console.log(\"healthTotal\", runtime.globalVars.playerHealthTotal);",
+						"console.log(\"magnetvalue\", playerProperties.addTemporaryAbilities.magnet * playerProperties.temporaryUpgrades.magnet);",
+						"console.log(\"auravalue\", playerProperties.addTemporaryAbilities.aura * playerProperties.temporaryUpgrades.aura);"
+					]
+				}
+			],
+			"sid": 945030907317621
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "every-tick",
 					"objectClass": "System",
 					"sid": 832763802314376
@@ -14926,7 +14934,10 @@
 						"",
 						"console.log(\"damageTotal\", runtime.globalVars.playerDamageTotal);",
 						"console.log(\"speedTotal\", runtime.globalVars.playerSpeedTotal);",
-						"console.log(\"defenseTotal\", runtime.globalVars.playerDefenseTotal);"
+						"console.log(\"defenseTotal\", runtime.globalVars.playerDefenseTotal);",
+						"console.log(\"healthTotal\", runtime.globalVars.playerHealthTotal);",
+						"runtime.globalVars.health = runtime.globalVars.playerHealthTotal;",
+						"runtime.globalVars.startHealth = runtime.globalVars.health;"
 					]
 				}
 			],
